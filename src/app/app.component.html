@@ -2,8 +2,24 @@
 
 <main>
   <ul id="users">
+    @for (user of users; track user.id){
     <li>
-      <app-user />
+      <app-user
+        [avatar]="user.avatar"
+        [name]="user.name"
+        [id]="user.id"
+        (select)="onSelectUser($event)"
+      />
     </li>
+    }
   </ul>
+  @if(currentUser){
+  <app-tasks
+    [currentUserName]="currentUserName"
+    [currentUserId]="currentUser.id"
+  >
+  </app-tasks>
+  } @else {
+  <p id="fallback">Select a user to see their tasks!</p>
+  }
 </main>
