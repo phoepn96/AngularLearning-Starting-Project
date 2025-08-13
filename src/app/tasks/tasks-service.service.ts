@@ -7,7 +7,7 @@ import { UserTask } from './task/task.component';
 export class TasksServiceService {
   constructor() {}
 
-  private dummyTasks = [
+  public dummyTasks: UserTask[] = [
     {
       id: 't1',
       userId: 'u1',

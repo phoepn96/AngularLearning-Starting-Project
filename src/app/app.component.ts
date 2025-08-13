@@ -3,6 +3,7 @@ import { HeaderComponent } from './header/header.component';
 import { UserComponent } from './user/user.component';
 import { DUMMY_USERS } from './dummy-users';
 import { TasksComponent } from './tasks/tasks.component';
+import { TasksServiceService } from './tasks/tasks-service.service';
 
 @Component({
   selector: 'app-root',
@@ -21,5 +22,8 @@ export class AppComponent {
     if (this.currentUser) {
       this.currentUserName = this.currentUser.name;
     }
+  }
+  logUser() {
+    console.log(this.currentUser);
   }
 }

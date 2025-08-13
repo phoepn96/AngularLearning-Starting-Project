@@ -18,6 +18,7 @@
   <app-tasks
     [currentUserName]="currentUserName"
     [currentUserId]="currentUser.id"
+    (click)="logUser()"
   >
   </app-tasks>
   } @else {

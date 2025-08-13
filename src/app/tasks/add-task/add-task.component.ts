@@ -11,8 +11,7 @@ import { TasksServiceService } from '../tasks-service.service';
   styleUrl: './add-task.component.css',
 })
 export class AddTaskComponent {
-  @Output() close = new EventEmitter<boolean>();
-  @Output() addTask = new EventEmitter<UserTask>();
+  @Output() close = new EventEmitter<void>();
   @Input() currentUserId: string = '';
   currentTitleInput: string = '';
   currentSummaryInput: string = '';
@@ -23,12 +22,13 @@ export class AddTaskComponent {
   constructor(private taskService: TasksServiceService) {}
 
   onClose() {
-    this.close.emit(false);
+    this.close.emit();
   }
 
   onSubmit() {
     this.genNewTask();
     this.taskService.addTask(this.newlyAddedTask);
+    this.close.emit();
   }
 
   genNewTask() {
@@ -40,6 +40,7 @@ export class AddTaskComponent {
       dueDate: this.currentDuedateInput,
     };
   }
+
   genNewTaskId(): string {
     this.taskId++;
     return `t${this.taskId}`;

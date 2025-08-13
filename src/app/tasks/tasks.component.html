@@ -6,20 +6,16 @@
     </menu>
   </header>
   <ul>
-    @for(task of currentUserTasks; track task.id){
+    @for(task of selectedUserTasks; track task.id){
     <li>
-      <app-task
-        [userTask]="task"
-        (completed)="onCompleteTask($event)"
-      ></app-task>
+      <app-task [userTask]="task"></app-task>
     </li>
     }
   </ul>
 </section>
 @if(showAddTask){
 <app-add-task
-  (close)="onCloseAddTask($event)"
   [currentUserId]="currentUserId"
-  (addTask)="addNewTask($event)"
+  (close)="onCloseAddTask()"
 ></app-add-task>
 }

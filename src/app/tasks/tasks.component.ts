@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { TaskComponent, UserTask } from './task/task.component';
+import { TaskComponent } from './task/task.component';
 import { AddTaskComponent } from './add-task/add-task.component';
 import { TasksServiceService } from './tasks-service.service';
 
@@ -13,19 +13,18 @@ import { TasksServiceService } from './tasks-service.service';
 export class TasksComponent {
   @Input({ required: true }) currentUserId!: string;
   @Input({ required: true }) currentUserName!: string;
-  showAddTask: boolean = false;
-
   constructor(private tasksService: TasksServiceService) {}
+
+  showAddTask: boolean = false;
+  get selectedUserTasks() {
+    return this.tasksService.getUserTasks(this.currentUserId);
+  }
+
+  onCloseAddTask() {
+    this.showAddTask = false;
+  }
 
   addTask() {
     this.showAddTask = true;
-  }
-
-  onCloseAddTask(closingState: boolean) {
-    this.showAddTask = closingState;
-  }
-
-  addNewTask(newTask: UserTask) {
-    this.onCloseAddTask(false);
   }
 }
