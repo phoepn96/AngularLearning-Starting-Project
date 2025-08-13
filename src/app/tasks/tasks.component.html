@@ -2,12 +2,24 @@
   <header>
     <h2>{{ currentUserName }}'s Tasks</h2>
     <menu>
-      <button>Add Task</button>
+      <button (click)="addTask()">Add Task</button>
     </menu>
   </header>
   <ul>
     @for(task of currentUserTasks; track task.id){
-    <app-task [userTask]="task"></app-task>
+    <li>
+      <app-task
+        [userTask]="task"
+        (completed)="onCompleteTask($event)"
+      ></app-task>
+    </li>
     }
   </ul>
 </section>
+@if(showAddTask){
+<app-add-task
+  (close)="onCloseAddTask($event)"
+  [currentUserId]="currentUserId"
+  (addTask)="addNewTask($event)"
+></app-add-task>
+}

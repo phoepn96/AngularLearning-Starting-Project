@@ -9,6 +9,7 @@
         [name]="user.name"
         [id]="user.id"
         (select)="onSelectUser($event)"
+        [selected]="user.id === currentUser?.id"
       />
     </li>
     }
